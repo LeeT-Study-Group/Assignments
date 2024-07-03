@@ -1,0 +1,75 @@
+*Leet*:
+**Easy:
+
+Maximum depth of a binary tree:
+**C**:
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+int maxDepth(struct TreeNode* root) {
+    if (root==NULL){
+        return 0;}
+    else{
+        int left=maxDepth(root->left);
+        int right=maxDepth(root->right);
+        return 1+(left>right?left:right);
+    }
+}
+
+**Python**:
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def maxDepth(self, root):
+        if root is None:
+            return 0
+        else:
+            left=self.maxDepth(root.left)
+            right=self.maxDepth(root.right)
+            return 1+max(left,right)
+        
+Plus one:
+**Python**:
+class Solution(object):
+    def plusOne(self, digits):
+        for i in range(len(digits)-1,-1,-1):
+            if digits[i]<9:
+                digits[i]+=1
+                return digits
+            if digits[i]==9:
+                digits[i]=0
+        return [1]+digits
+
+**C**:
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* plusOne(int* digits, int digitsSize, int* returnSize) {
+    for(int i=digitsSize-1;i>=0;i--){
+        if (digits[i]<9){
+            digits[i]+=1;
+            *returnSize=digitsSize;
+            return digits;
+        }int* newD=(int*)malloc((digitsSize+1)*sizeof(int));
+        newD[0]=1;
+        for (int i=1;i<=digitsSize;i++){
+            newD[i]=0;
+        }
+    *returnSize=digitsSize+1;
+    return newD;
+}
+return 0;
+}
+
+
+        
+
