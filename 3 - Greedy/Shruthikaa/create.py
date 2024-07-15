@@ -1,6 +1,5 @@
 import os
 
-# Updated question data
 questions = {
     "Easy": [
         ("Array Partition", "https://leetcode.com/problems/array-partition/"),
@@ -20,8 +19,7 @@ questions = {
     ]
 }
 
-def sanitize_folder_name(name):
-    # Replace problematic characters
+def removeErrorChars(name):
     replacements = {
         " & ": "_and_",
         "/": "_",
@@ -38,7 +36,7 @@ for difficulty, q_list in questions.items():
         os.mkdir(difficulty)
     
     for q_name, q_link in q_list:
-        q_folder = os.path.join(difficulty, sanitize_folder_name(q_name))
+        q_folder = os.path.join(difficulty, removeErrorChars(q_name))
         if not os.path.exists(q_folder):
             os.mkdir(q_folder)
         
